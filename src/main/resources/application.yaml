@@ -1,0 +1,4 @@
+microsoft:
+  graph:
+    auth:
+      appId: secret
