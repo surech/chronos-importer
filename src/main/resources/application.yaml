@@ -1,0 +1,6 @@
+microsoft:
+  graph:
+    auth:
+      appId: secret
+      scopes: User.Read, Calendars.Read
+      authority: https://login.microsoftonline.com/organizations/
