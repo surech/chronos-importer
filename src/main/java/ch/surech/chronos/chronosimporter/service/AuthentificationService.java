@@ -28,13 +28,22 @@ public class AuthentificationService {
     @Value("${microsoft.graph.auth.authority}")
     private String authority;
 
+    @Value("${microsoft.graph.auth.authToken}")
+    private String preSetAuthToken;
+
     private IAuthenticationResult authenticationResult;
 
     public String getAccessToken(){
-        return authenticationResult.accessToken();
+        return preSetAuthToken != null ? preSetAuthToken : authenticationResult.accessToken();
     }
 
     public void signIn(){
+        // Are we allready signed in?
+        if(authenticationResult != null || this.preSetAuthToken != null){
+            LOGGER.info("Already logged in, nothing to do here");
+            return;
+        }
+
         PublicClientApplication app;
         try {
             // Build the MSAL application object with

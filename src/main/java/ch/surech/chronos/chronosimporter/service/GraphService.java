@@ -27,12 +27,4 @@ public class GraphService {
 
         return graphClient;
     }
-
-    public User getUser(){
-        User user = getGraphClient()
-                .me()
-                .buildRequest()
-                .get();
-        return user;
-    }
 }
