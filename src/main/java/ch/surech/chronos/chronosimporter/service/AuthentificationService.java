@@ -5,6 +5,7 @@ import com.microsoft.aad.msal4j.DeviceCodeFlowParameters;
 import com.microsoft.aad.msal4j.IAuthenticationResult;
 import com.microsoft.aad.msal4j.PublicClientApplication;
 import lombok.extern.java.Log;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,13 +29,22 @@ public class AuthentificationService {
     @Value("${microsoft.graph.auth.authority}")
     private String authority;
 
+    @Value("${microsoft.graph.auth.authToken:}")
+    private String preSetAuthToken;
+
     private IAuthenticationResult authenticationResult;
 
     public String getAccessToken(){
-        return authenticationResult.accessToken();
+        return StringUtils.isNotEmpty(preSetAuthToken) ? preSetAuthToken : authenticationResult.accessToken();
     }
 
     public void signIn(){
+        // Are we allready signed in?
+        if(authenticationResult != null || StringUtils.isNotEmpty(preSetAuthToken)){
+            LOGGER.info("Already logged in, nothing to do here");
+            return;
+        }
+
         PublicClientApplication app;
         try {
             // Build the MSAL application object with

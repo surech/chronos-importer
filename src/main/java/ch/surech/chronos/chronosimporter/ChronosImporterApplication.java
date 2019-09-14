@@ -3,6 +3,7 @@ package ch.surech.chronos.chronosimporter;
 import ch.surech.chronos.chronosimporter.service.AuthentificationService;
 import ch.surech.chronos.chronosimporter.service.CalendarService;
 import ch.surech.chronos.chronosimporter.service.GraphService;
+import ch.surech.chronos.chronosimporter.service.UserService;
 import com.microsoft.graph.models.extensions.Event;
 import com.microsoft.graph.models.extensions.User;
 import org.slf4j.Logger;
@@ -28,6 +29,9 @@ public class ChronosImporterApplication implements CommandLineRunner {
     @Autowired
     private CalendarService calendarService;
 
+    @Autowired
+    private UserService userService;
+
     public static void main(String[] args) {
         SpringApplication.run(ChronosImporterApplication.class, args);
     }
@@ -38,8 +42,9 @@ public class ChronosImporterApplication implements CommandLineRunner {
 
         LOGGER.info("Token: " + authentificationService.getAccessToken());
 
-        User user = graphService.getUser();
+        User user = userService.getUser("claude.baumann@sbb.ch");
         LOGGER.info("Welcome {}!", user.displayName);
+        LOGGER.info("User PrincipalName: {}!", user.userPrincipalName);
 
         List<Event> events = calendarService.getEvents();
         for (Event event : events) {
