@@ -4,6 +4,7 @@ import com.microsoft.graph.models.generated.EventType;
 import com.microsoft.graph.models.generated.FreeBusyStatus;
 import com.microsoft.graph.models.generated.Importance;
 import com.microsoft.graph.models.generated.LocationType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,9 +18,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
 public class ImportedEvent {
 
     @Id
+    @Column(name = "importedevent_pk")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -79,6 +82,6 @@ public class ImportedEvent {
     @JoinColumn(name = "organizer_fk")
     private Participant organizer;
 
-    // TODO: Mapping einfügen
+    @OneToMany(mappedBy = "event_fk")
     private List<Participant> attendees;
 }
