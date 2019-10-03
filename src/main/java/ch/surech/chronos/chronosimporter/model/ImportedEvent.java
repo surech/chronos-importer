@@ -4,20 +4,17 @@ import com.microsoft.graph.models.generated.EventType;
 import com.microsoft.graph.models.generated.FreeBusyStatus;
 import com.microsoft.graph.models.generated.Importance;
 import com.microsoft.graph.models.generated.LocationType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "importedevent")
 @Getter
 @Setter
-@NoArgsConstructor
 @Builder
 public class ImportedEvent {
 
@@ -40,10 +37,10 @@ public class ImportedEvent {
     private Importance importance;
 
     @Column(name = "start", columnDefinition = "TIMESTAMP")
-    private LocalDateTime start;
+    private ZonedDateTime start;
 
     @Column(name = "end", columnDefinition = "TIMESTAMP")
-    private LocalDateTime end;
+    private ZonedDateTime end;
 
     @Column(name = "location_name")
     private String locationName;
@@ -83,5 +80,6 @@ public class ImportedEvent {
     private Participant organizer;
 
     @OneToMany(mappedBy = "event_fk")
+    @Singular
     private List<Participant> attendees;
 }

@@ -1,6 +1,8 @@
 package ch.surech.chronos.chronosimporter.model;
 
+import com.microsoft.graph.models.extensions.ResponseStatus;
 import com.microsoft.graph.models.generated.AttendeeType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Participant")
 @Getter @Setter
-@NoArgsConstructor
+@Builder
 public class Participant {
 
     @Id
@@ -31,4 +33,7 @@ public class Participant {
     @ManyToOne
     @JoinColumn(name = "event_fk")
     private ImportedEvent event;
+
+    @Column(name = "response_status")
+    private ResponseStatus responseStatus;
 }

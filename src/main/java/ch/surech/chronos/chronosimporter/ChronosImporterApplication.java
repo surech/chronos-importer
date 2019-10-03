@@ -1,5 +1,7 @@
 package ch.surech.chronos.chronosimporter;
 
+import ch.surech.chronos.chronosimporter.mapper.ImportedEventMapper;
+import ch.surech.chronos.chronosimporter.model.ImportedEvent;
 import ch.surech.chronos.chronosimporter.service.AuthentificationService;
 import ch.surech.chronos.chronosimporter.service.CalendarService;
 import ch.surech.chronos.chronosimporter.service.GraphService;
@@ -52,6 +54,10 @@ public class ChronosImporterApplication implements CommandLineRunner {
             System.out.println("  Organizer: " + event.organizer.emailAddress.name);
             System.out.println("  Start: " + event.start);
             System.out.println("  End: " + event.end);
+
+            // Map
+            ImportedEvent importedEvent = ImportedEventMapper.toModel(event);
+            System.out.println("Mapped Subject: " + importedEvent.getSubject());
         }
     }
 }
