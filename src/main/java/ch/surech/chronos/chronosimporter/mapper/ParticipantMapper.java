@@ -21,7 +21,9 @@ public class ParticipantMapper {
 
         extractEMail(attendee, builder);
         builder.attendeeType(attendee.type);
-        builder.responseStatus(attendee.status);
+        if(attendee.status != null) {
+            builder.responseStatus(attendee.status.response);
+        }
         return builder.build();
     }
 
