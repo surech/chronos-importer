@@ -4,3 +4,9 @@ microsoft:
       appId: secret
       scopes: User.Read, Calendars.Read, User.ReadBasic.All, Calendars.Read.Shared
       authority: https://login.microsoftonline.com/organizations/
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306
+    username: root
+    password: secret

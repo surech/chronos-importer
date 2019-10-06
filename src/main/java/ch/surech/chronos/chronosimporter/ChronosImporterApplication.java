@@ -1,9 +1,9 @@
 package ch.surech.chronos.chronosimporter;
 
-import ch.surech.chronos.chronosimporter.service.AuthentificationService;
-import ch.surech.chronos.chronosimporter.service.CalendarService;
-import ch.surech.chronos.chronosimporter.service.GraphService;
-import ch.surech.chronos.chronosimporter.service.UserService;
+import ch.surech.chronos.chronosimporter.mapper.ImportedEventMapper;
+import ch.surech.chronos.chronosimporter.model.ImportedEvent;
+import ch.surech.chronos.chronosimporter.repo.ImportedEventRepository;
+import ch.surech.chronos.chronosimporter.service.*;
 import com.microsoft.graph.models.extensions.Event;
 import com.microsoft.graph.models.extensions.User;
 import org.slf4j.Logger;
@@ -24,10 +24,10 @@ public class ChronosImporterApplication implements CommandLineRunner {
     private AuthentificationService authentificationService;
 
     @Autowired
-    private GraphService graphService;
+    private CalendarService calendarService;
 
     @Autowired
-    private CalendarService calendarService;
+    private ImportedEventService importedEventService;
 
     @Autowired
     private UserService userService;
@@ -52,6 +52,14 @@ public class ChronosImporterApplication implements CommandLineRunner {
             System.out.println("  Organizer: " + event.organizer.emailAddress.name);
             System.out.println("  Start: " + event.start);
             System.out.println("  End: " + event.end);
+
+            // Map
+            ImportedEvent importedEvent = ImportedEventMapper.toModel(event);
+            System.out.println("  Mapped Subject: " + importedEvent.getSubject());
+
+            // Save
+            ImportedEvent savedEvent = importedEventService.save(importedEvent);
+            System.out.println("  Saved Event Id: " + savedEvent.getId());
         }
     }
 }
