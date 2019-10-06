@@ -17,7 +17,7 @@ public class CalendarService {
     @Autowired
     private GraphService graphService;
 
-    public List<Event> getEvents(){
+    public List<Event> getEvents(String userId){
         IGraphServiceClient graphClient = graphService.getGraphClient();
 
         // Use QueryOption to specify the $orderby query parameter
@@ -27,7 +27,7 @@ public class CalendarService {
 
         // GET /me/events
         IEventCollectionPage eventPage = graphClient
-                .me()
+                .users(userId)
                 .events()
                 .buildRequest(options)
 //                .select("subject,organizer,start,end")
@@ -35,4 +35,5 @@ public class CalendarService {
 
         return eventPage.getCurrentPage();
     }
+
 }

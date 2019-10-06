@@ -77,6 +77,9 @@ public class ImportedEvent {
     @Enumerated(EnumType.STRING)
     private EventType type;
 
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+    private ZonedDateTime createdAt;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "organizer_fk")
     private Participant organizer;
