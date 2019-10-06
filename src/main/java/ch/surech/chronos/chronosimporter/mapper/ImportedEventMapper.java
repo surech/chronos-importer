@@ -3,6 +3,8 @@ package ch.surech.chronos.chronosimporter.mapper;
 import ch.surech.chronos.chronosimporter.model.ImportedEvent;
 import com.microsoft.graph.models.extensions.Event;
 
+import java.util.Calendar;
+
 public class ImportedEventMapper {
 
     public static ImportedEvent toModel(Event event){
@@ -29,6 +31,7 @@ public class ImportedEventMapper {
         if (event.attendees != null) {
             event.attendees.stream().map(ParticipantMapper::toParticipant).forEach(builder::attendee);
         }
+        builder.createdAt(DateTimeTimeZoneMapper.toZonedDateTime(event.createdDateTime));
 
         return builder.build();
     }

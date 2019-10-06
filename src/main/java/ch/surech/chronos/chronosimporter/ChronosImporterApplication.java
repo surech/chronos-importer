@@ -46,7 +46,8 @@ public class ChronosImporterApplication implements CommandLineRunner {
         LOGGER.info("Welcome {}!", user.displayName);
         LOGGER.info("User PrincipalName: {}!", user.userPrincipalName);
 
-        List<Event> events = calendarService.getEvents();
+//        List<Event> events = calendarService.getEvents("claude.baumann@sbb.ch");
+        List<Event> events = calendarService.getEvents("stefan.urech@sbb.ch");
         for (Event event : events) {
             System.out.println("Subject: " + event.subject);
             System.out.println("  Organizer: " + event.organizer.emailAddress.name);

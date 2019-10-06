@@ -91,4 +91,12 @@
         <modifyDataType tableName="importedevent" columnName="body_preview" newDataType="TEXT"></modifyDataType>
     </changeSet>
 
+    <changeSet id="4" author="surech">
+        <addColumn tableName="importedevent">
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
