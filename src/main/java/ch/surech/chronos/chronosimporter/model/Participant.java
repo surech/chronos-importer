@@ -18,7 +18,7 @@ public class Participant {
 
     @Id
     @Column(name = "participant_pk")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")

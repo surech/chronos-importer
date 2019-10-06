@@ -30,7 +30,7 @@ public class CalendarService {
                 .me()
                 .events()
                 .buildRequest(options)
-                .select("subject,organizer,start,end")
+//                .select("subject,organizer,start,end")
                 .get();
 
         return eventPage.getCurrentPage();

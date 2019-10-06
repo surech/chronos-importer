@@ -19,15 +19,29 @@ public class ImportedEventMapper {
             builder.locationType(event.location.locationType);
             builder.locationId(event.location.uniqueId);
         }
-        builder.isAllDay(event.isAllDay);
-        builder.isCancelled(event.isCancelled);
-        builder.isOrganizer(event.isOrganizer);
+        builder.isAllDay(nc(event.isAllDay));
+        builder.isCancelled(nc(event.isCancelled));
+        builder.isOrganizer(nc(event.isOrganizer));
         builder.seriesMasterId(event.seriesMasterId);
         builder.showAs(event.showAs);
         builder.type(event.type);
         builder.organizer(ParticipantMapper.toParticipant(event.organizer));
-        event.attendees.stream().map(ParticipantMapper::toParticipant).forEach(builder::attendee);
+        if (event.attendees != null) {
+            event.attendees.stream().map(ParticipantMapper::toParticipant).forEach(builder::attendee);
+        }
 
         return builder.build();
+    }
+
+    private static boolean nc(Boolean value){
+        return nc(value, false);
+    }
+
+    private static boolean nc(Boolean value, boolean defaultValue){
+        if(value == null){
+            return defaultValue;
+        } else {
+            return value.booleanValue();
+        }
     }
 }

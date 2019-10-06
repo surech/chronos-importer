@@ -4,10 +4,12 @@ import com.microsoft.graph.models.generated.EventType;
 import com.microsoft.graph.models.generated.FreeBusyStatus;
 import com.microsoft.graph.models.generated.Importance;
 import com.microsoft.graph.models.generated.LocationType;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Singular;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class ImportedEvent {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "icaluid")
@@ -75,11 +77,11 @@ public class ImportedEvent {
     @Enumerated(EnumType.STRING)
     private EventType type;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "organizer_fk")
     private Participant organizer;
 
-    @OneToMany(mappedBy = "event_fk")
+    @OneToMany(mappedBy = "event")
     @Singular
     private List<Participant> attendees;
 }

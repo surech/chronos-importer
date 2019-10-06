@@ -86,5 +86,9 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="3" author="surech">
+        <modifyDataType tableName="importedevent" columnName="body_preview" newDataType="TEXT"></modifyDataType>
+    </changeSet>
 
 </databaseChangeLog>
