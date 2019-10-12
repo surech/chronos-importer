@@ -99,4 +99,8 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="5" author="surech">
+        <modifyDataType tableName="importedevent" columnName="icaluid" newDataType="varchar(400)"/>
+    </changeSet>
+
 </databaseChangeLog>
