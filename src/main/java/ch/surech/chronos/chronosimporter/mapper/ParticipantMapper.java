@@ -29,7 +29,7 @@ public class ParticipantMapper {
 
     private static void extractEMail(Recipient recipient, Participant.ParticipantBuilder builder) {
 
-        if (recipient.emailAddress != null) {
+        if (recipient != null && recipient.emailAddress != null) {
             builder.name(recipient.emailAddress.name);
             builder.address(recipient.emailAddress.address);
         } else {

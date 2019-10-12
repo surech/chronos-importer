@@ -37,6 +37,9 @@ public class ChronosImporterApplication implements CommandLineRunner {
     @Autowired
     private GroupService groupService;
 
+    @Autowired
+    private ImportService importService;
+
     public static void main(String[] args) {
         SpringApplication.run(ChronosImporterApplication.class, args);
     }
@@ -48,13 +51,15 @@ public class ChronosImporterApplication implements CommandLineRunner {
         LOGGER.info("Token: " + authentificationService.getAccessToken());
 
         showUserInformations();
-        showGroupInformation();
+//        showGroupInformation();
+
+        importService.runImport();
 
 //        importEvents();
 
     }
 
-    private void showGroupInformation(){
+    private void showGroupInformation() {
         List<Group> groups = groupService.searchGroupByDisplayName("DL TIMO-PHOENIX");
         Group phoenix = groups.get(0);
         LOGGER.info("Phoenix Displayname: {}", phoenix.displayName);

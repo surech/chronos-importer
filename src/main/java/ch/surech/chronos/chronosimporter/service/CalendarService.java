@@ -61,7 +61,7 @@ public class CalendarService {
         final List<Option> options = new LinkedList<Option>();
         options.add(new QueryOption("startDateTime", startString));
         options.add(new QueryOption("endDateTime", endString));
-        options.add(new QueryOption("top", "100"));
+        options.add(new QueryOption("top", "500"));
 
         IEventCollectionRequest request = graphClient
                 .users(userId)
