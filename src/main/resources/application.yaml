@@ -13,3 +13,9 @@ spring:
 
 import:
   accounts: foo@example.com,bar@example.com
+
+server:
+  port: 8085
+
+chronos:
+  server: http://localhost:8080

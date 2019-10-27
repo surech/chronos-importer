@@ -58,6 +58,7 @@ public class ChronosImporterApplication implements CommandLineRunner {
 
 //        importService.runImport();
 
+        // Create Users in Chronos
         createUserService.createUsers();
 
 //        importEvents();
