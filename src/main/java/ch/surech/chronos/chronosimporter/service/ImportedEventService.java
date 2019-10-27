@@ -2,7 +2,7 @@ package ch.surech.chronos.chronosimporter.service;
 
 import ch.surech.chronos.chronosimporter.model.ImportedEvent;
 import ch.surech.chronos.chronosimporter.model.Participant;
-import ch.surech.chronos.chronosimporter.model.ParticipantRepository;
+import ch.surech.chronos.chronosimporter.repo.ParticipantRepository;
 import ch.surech.chronos.chronosimporter.repo.ImportedEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

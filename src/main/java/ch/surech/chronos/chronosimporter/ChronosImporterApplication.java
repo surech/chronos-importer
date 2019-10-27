@@ -40,20 +40,26 @@ public class ChronosImporterApplication implements CommandLineRunner {
     @Autowired
     private ImportService importService;
 
+    @Autowired
+    private CreateUserService createUserService;
+
     public static void main(String[] args) {
         SpringApplication.run(ChronosImporterApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        authentificationService.signIn();
+//        authentificationService.signIn();
 
-        LOGGER.info("Token: " + authentificationService.getAccessToken());
+//        LOGGER.info("Token: " + authentificationService.getAccessToken());
 
-        showUserInformations();
+//        showUserInformations();
 //        showGroupInformation();
 
-        importService.runImport();
+//        importService.runImport();
+
+        // Create Users in Chronos
+        createUserService.createUsers();
 
 //        importEvents();
 
