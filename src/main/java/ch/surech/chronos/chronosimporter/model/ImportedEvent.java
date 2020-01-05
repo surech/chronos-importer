@@ -4,10 +4,8 @@ import com.microsoft.graph.models.generated.EventType;
 import com.microsoft.graph.models.generated.FreeBusyStatus;
 import com.microsoft.graph.models.generated.Importance;
 import com.microsoft.graph.models.generated.LocationType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Singular;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -18,6 +16,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ImportedEvent {
 
     @Id

@@ -10,4 +10,10 @@ public interface ImportedEventRepository extends CrudRepository<ImportedEvent, L
 
     @Query("SELECT e.iCalUId FROM ImportedEvent e")
     List<String> getAllICalUIds();
+
+    @Query("SELECT DISTINCT e FROM ImportedEvent e inner join fetch e.attendees a ORDER BY e.createdAt asc")
+    List<ImportedEvent> getAll();
+
+    @Query("SELECT DISTINCT e FROM ImportedEvent e inner join fetch e.attendees a WHERE e.type = 'SINGLE_INSTANCE' AND e.isAllDay = false AND e.isCancelled = false ORDER BY e.createdAt asc")
+    List<ImportedEvent> getAllForExport();
 }
