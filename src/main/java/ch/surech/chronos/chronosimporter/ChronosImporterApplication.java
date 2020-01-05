@@ -43,6 +43,9 @@ public class ChronosImporterApplication implements CommandLineRunner {
     @Autowired
     private CreateUserService createUserService;
 
+    @Autowired
+    private SendRequestService sendRequestService;
+
     public static void main(String[] args) {
         SpringApplication.run(ChronosImporterApplication.class, args);
     }
@@ -59,9 +62,12 @@ public class ChronosImporterApplication implements CommandLineRunner {
 //        importService.runImport();
 
         // Create Users in Chronos
-        createUserService.createUsers();
+//        createUserService.createUsers();
 
 //        importEvents();
+
+        // Send Meeting-Request
+        sendRequestService.sendRequests();
 
     }
 

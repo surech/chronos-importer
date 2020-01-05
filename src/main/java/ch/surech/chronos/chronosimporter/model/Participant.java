@@ -3,10 +3,7 @@ package ch.surech.chronos.chronosimporter.model;
 import com.microsoft.graph.models.extensions.ResponseStatus;
 import com.microsoft.graph.models.generated.AttendeeType;
 import com.microsoft.graph.models.generated.ResponseType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,10 +11,12 @@ import javax.persistence.*;
 @Table(name = "participant")
 @Getter @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Participant {
 
     @Id
-    @Column(name = "participant_pk")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
